@@ -6,9 +6,10 @@ import Home from './Home';
 import About from './About';
 import MainPage from './MainPage';
 import Condition from './Condition';
+import Clock from './Clock';
 import "./index.css";
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <App/>
+    <Clock/>
 );
  
