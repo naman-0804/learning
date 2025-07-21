@@ -8,9 +8,10 @@ import MainPage from './MainPage';
 import Condition from './Condition';
 import Clock from './Clock';
 import Events from './Events';
+import Form from './Form';
 import "./index.css";
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    
+    <Form/>
 );
  
