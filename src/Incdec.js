@@ -1,4 +1,4 @@
-import react,{useState} from 'react'
+import react,{useEffect, useState} from 'react'
 
 const Incdec=()=>{
     const[count,setCount]=useState(0);
@@ -9,9 +9,18 @@ const Incdec=()=>{
         }
         else if(event.target.name=="dec")
         {
-            setCount(count-1);
+            if(count==0)
+            {
+                alert("Cant decrement further")
+            }
+            else{
+                setCount(count-1);
+            }
         }
     }
+    useEffect(()=>{
+        console.log("Running useEffect()");
+    } ,[count])
     return (
         <>
             <div>
