@@ -1,4 +1,5 @@
 import react,{useState} from 'react'
+
 const Incdec=()=>{
     const[count,setCount]=useState(0);
     const counter=(event)=>{
@@ -14,9 +15,9 @@ const Incdec=()=>{
     return (
         <>
             <div>
-                <h1>{count}</h1>
-                <button name="Inc" onClick={counter}>Increment</button>
-                <button name="dec" onClick={counter}>Decrement</button>
+                <h1 id="cn">{count}</h1>
+                <button id="btn" name="Inc" onClick={counter}>Increment</button>
+                <button id="btn" name="dec" onClick={counter}>Decrement</button>
             </div>
         </>
     )
