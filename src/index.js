@@ -10,9 +10,10 @@ import Clock from './Clock';
 import Events from './Events';
 import Form from './Form';
 import Incdec from './Incdec';
+import Ref from './Ref';
 import "./index.css";
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <Incdec/>
+    <Ref/>
 );
  
