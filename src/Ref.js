@@ -4,7 +4,10 @@ const Ref=()=>{
     const refElem=useRef(0);
     const change=(event)=>{
         setVal(event.target.value)
-        refElem.current=refElem.current+1;
+        //refElem.current=refElem.current+1;
+    }
+    const submit=()=>{
+        refElem.current.style.color="red"
     }
     //useEffect(()=>{
      //   setNum(num+1);
@@ -14,10 +17,11 @@ const Ref=()=>{
         <>
             <div className='container'>
                 <h1>useRef hook: </h1>
-                <input type='text' value={val} onChange={change}/>
-                <h1>Count:{refElem.current}</h1>
+                <input type='text' ref={refElem} value={val} onChange={change}/>
+                <button onClick={submit}></button>
+                
             </div>
         </>
     )
 }
-export default Ref;
+export default  Ref;
