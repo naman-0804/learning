@@ -1,10 +1,17 @@
 import React from "react";
-function ChildC({ name }) {
+import {fName} from './App';
+function ChildC() {
   return (
     <div>
-      <h2>Child C</h2>
-      <p>Name: {name}</p>
-      <p>Child C is a component that receives the name prop from Child A.</p>
+      <fName.Consumer>
+        {
+          (fName) =>{
+            return (
+              <h1>My name is {fName}</h1>
+            );
+          }
+        }
+      </fName.Consumer>
     </div>
   );
 }

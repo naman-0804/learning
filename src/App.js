@@ -1,15 +1,17 @@
 import './App.css';
-import React,{useState} from 'react';
-import ChildA from './ChildA';
+import React,{createContext, useState} from 'react';
+import ChildC from './ChildC';
+const fName=createContext();
 const App=()=> { 
 
-const name="Naman"
   return (
     <>
-      <h1>Props drilling</h1>
-      <ChildA name={name}/>
+    <fName.Provider value={"Naman"}>
+      <ChildC/>
+    </fName.Provider>
     </>
   );
 }
 
 export default App;
+export {fName};
