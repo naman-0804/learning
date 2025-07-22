@@ -1,18 +1,13 @@
 import './App.css';
 import React,{useState} from 'react';
+import ChildA from './ChildA';
+const App=()=> { 
 
-function App() { 
-  const[count,setCount]=useState(0);
-  const incre=()=>{
-    setCount(count+1)
-  }
-
+const name="Naman"
   return (
     <>
-      <div className='box'>
-        <h1> {count}</h1>
-        <button onClick={incre}>Increment</button>
-      </div>
+      <h1>Props drilling</h1>
+      <ChildA name={name}/>
     </>
   );
 }
