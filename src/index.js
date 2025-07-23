@@ -11,9 +11,10 @@ import Events from './Events';
 import Form from './Form';
 import Incdec from './Incdec';
 import Ref from './Ref';
+import Memo from './Memo';
 import "./index.css";
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <App/>
+    <Memo/>
 );
  
