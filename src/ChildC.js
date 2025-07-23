@@ -1,17 +1,13 @@
-import React from "react";
+import React,{useContext} from "react";
 import {fName} from './App';
+
+
 function ChildC() {
+  const name = useContext(fName);
+
   return (
     <div>
-      <fName.Consumer>
-        {
-          (fName) =>{
-            return (
-              <h1>My name is {fName}</h1>
-            );
-          }
-        }
-      </fName.Consumer>
+      <h1>{name}</h1>
     </div>
   );
 }
