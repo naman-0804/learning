@@ -12,9 +12,10 @@ import Form from './Form';
 import Incdec from './Incdec';
 import Ref from './Ref';
 import Memo from './Memo';
+import Callback from './Callback';
 import "./index.css";
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <Memo/>
+    <Callback />
 );
  
