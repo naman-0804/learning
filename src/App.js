@@ -23,13 +23,13 @@ const App=()=> {
           <Route path="/condition" element={<Condition />} />
 
           <Route path="/clock/" element={<Clock />} >
-            <Route path="form" element={<Form />} />
           </Route>
         
           <Route path="/events" element={<Events />} />
           <Route path="/form" element={<Form />} />
           <Route path="/about" element={<About />} />
           <Route path="/incdec" element={<Incdec />} />
+          <Route path="/about/:fname" element={<About/>} />
           <Route path="*" element={<Error/>} />
         </Routes>
       </BrowserRouter>

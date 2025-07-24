@@ -14,6 +14,7 @@ const Home = () => {
                     <li><NavLink to="/events">Events</NavLink></li>
                     <li><NavLink to="/form">Form</NavLink></li>
                     <li><NavLink to="/incdec">Increment/Decrement</NavLink></li>
+                    
                     <li><NavLink to="/about">About</NavLink></li>
                 </ul>
             </nav>
