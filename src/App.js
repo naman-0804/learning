@@ -18,16 +18,12 @@ const App=()=> {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
           <Route path="/mainpage" element={<MainPage />} />
           <Route path="/condition" element={<Condition />} />
           <Route path="/clock" element={<Clock />} />
           <Route path="/events" element={<Events />} />
           <Route path="/form" element={<Form />} />
           <Route path="/incdec" element={<Incdec />} />
-          <Route path="/ref" element={<Ref />} />
-          <Route path="/memo" element={<Memo />} />
-          <Route path="/callback" element={<Callback />} />
         </Routes>
       </BrowserRouter>
     </>
