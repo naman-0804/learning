@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 const Home = () => {
     return (
         <React.Fragment>
@@ -7,13 +7,13 @@ const Home = () => {
             <p>This is a simple React component.</p>
             <nav>
                 <ul>
-                    <li><Link to="/">Home</Link></li>
-                    <li><Link to="/mainpage">Main Page</Link></li>
-                    <li><Link to="/condition">Condition</Link></li>
-                    <li><Link to="/clock">Clock</Link></li>
-                    <li><Link to="/events">Events</Link></li>
-                    <li><Link to="/form">Form</Link></li>
-                    <li><Link to="/incdec">Increment/Decrement</Link></li>
+                    <li><NavLink to="/">Home</NavLink></li>
+                    <li><NavLink to="/mainpage">Main Page</NavLink></li>
+                    <li><NavLink to="/condition">Condition</NavLink></li>
+                    <li><NavLink to="/clock">Clock</NavLink></li>
+                    <li><NavLink to="/events">Events</NavLink></li>
+                    <li><NavLink to="/form">Form</NavLink></li>
+                    <li><NavLink to="/incdec">Increment/Decrement</NavLink></li>
                 </ul>
             </nav>
         </React.Fragment>

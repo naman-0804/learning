@@ -60,3 +60,6 @@ ul li a{
   color: black;
   font-weight: bold;
 }
+.active{
+  color: blue;
+}
