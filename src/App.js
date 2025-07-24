@@ -28,6 +28,7 @@ const App=()=> {
         
           <Route path="/events" element={<Events />} />
           <Route path="/form" element={<Form />} />
+          <Route path="/about" element={<About />} />
           <Route path="/incdec" element={<Incdec />} />
           <Route path="*" element={<Error/>} />
         </Routes>

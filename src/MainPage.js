@@ -23,6 +23,7 @@ function MainPage() {
                     <li><NavLink to="/incdec">Increment/Decrement</NavLink></li>
                 </ul>
             </nav>
+            
             </div>
             
         </>
