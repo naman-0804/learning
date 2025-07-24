@@ -1,4 +1,5 @@
 import react , {useState} from 'react'
+import { Outlet } from 'react-router-dom';
 const Clock = ()=>{
     const curTime=new Date().toLocaleTimeString();
     const [time,setTime]=useState(curTime);

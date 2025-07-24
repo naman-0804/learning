@@ -11,7 +11,8 @@ import Form from './Form';
 import Incdec from './Incdec';
 import Ref from './Ref';
 import Memo from './Memo';
-import Callback from './Callback'; 
+import Callback from './Callback';
+import Error from './Error'; 
 const App=()=> { 
   return (
     <>
@@ -20,10 +21,15 @@ const App=()=> {
           <Route path="/" element={<Home />} />
           <Route path="/mainpage" element={<MainPage />} />
           <Route path="/condition" element={<Condition />} />
-          <Route path="/clock" element={<Clock />} />
+
+          <Route path="/clock/" element={<Clock />} >
+            <Route path="form" element={<Form />} />
+          </Route>
+        
           <Route path="/events" element={<Events />} />
           <Route path="/form" element={<Form />} />
           <Route path="/incdec" element={<Incdec />} />
+          <Route path="*" element={<Error/>} />
         </Routes>
       </BrowserRouter>
     </>
