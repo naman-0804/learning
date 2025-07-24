@@ -46,3 +46,17 @@
   border-radius: 10px;
   margin: auto;
 }
+nav{
+  background-color: #f8f9fa;
+  padding: 10px;
+  border-radius: 5px;
+}
+ul{
+  list-style-type: none;
+  padding: 0;
+}
+ul li a{
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+}
