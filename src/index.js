@@ -16,6 +16,8 @@ import Callback from './Callback';
 import "./index.css";
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <Callback />
+    <React.StrictMode>
+        <App />
+    </React.StrictMode>
 );
  
