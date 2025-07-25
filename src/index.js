@@ -15,10 +15,11 @@ import Memo from './Memo';
 import Callback from './Callback';
 import "./index.css";
 import Axiospost from './Axiospost';
+import Lazyloading from './Lazyloading';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
-        <Axiospost />
+        <Lazyloading/>
     </React.StrictMode>
 );
  
