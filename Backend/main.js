@@ -12,4 +12,7 @@ fs.writeFile("naman2.txt","Naman is a good boy2", () => {
         } 
     });
 })
+fs.appendFile("naman2.txt", "Naman is a good boy3", () => {
+    console.log("File apended successfully");
+});
 console.log("File created successfully 1st");
