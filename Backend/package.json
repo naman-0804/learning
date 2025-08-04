@@ -8,8 +8,11 @@
     "start": "node server.js"
   },
   "keywords": [
-    "backend" 
+    "backend"
   ],
   "author": "naman",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
 }
