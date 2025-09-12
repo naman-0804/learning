@@ -1,11 +1,18 @@
-const http =require('http');
-const hostname='127.0.0.1';  
-const port = 3000;
-const server=http.createServer((req,res)=>{
-    res.statusCode=200;
-    res.setHeader('Content-Type', 'text/html');
-    res.end('<h1>Hello</h1>\n');
-});
-server.listen(port,hostname,()=>{
-    console.log(`Server running at http://${hostname}:${port}/`);
+const express=require('express');
+const app=express();
+const port=3000;
+app.get('/',(req,res)=>{
+    res.send("Hello world")
+})
+app.get('/about',(req,res)=>{
+    res.send("About page")
+})
+app.get('/contact',(req,res)=>{
+    res.send("Contact page")
+})
+app.get('/blog',(req,res)=>{
+    res.send("Blog page")
+})
+app.listen(port,()=>{
+    console.log(`Server is running on http://localhost:${port}`)
 })
