@@ -1,11 +1,15 @@
 const express=require('express');
 const app=express();
+
+const blog=require('./routes/blog.js')
+
 app.use(express.static('public'));
+app.use('/blog',blog);
 //http://localhost:3000/naman.txt accessible
 const port=3000;
-// app.get('/',(req,res)=>{
-//     res.send("Hello world")
-// })
+app.get('/',(req,res)=>{
+    res.send("Hello world")
+})
 app.post('/',(req,res)=>{
     res.send("Hello world post request")
 })
