@@ -1,10 +1,13 @@
 const express=require('express');
 const app=express();
-
+const fs=require("fs");
 const blog=require('./routes/blog.js')
-
+app.use((req,res,next)=>{
+    fs.appendFileSync("Server.log",`${new Date().toString()} ${req.url} ${req.method}\n`)
+    next();
+})
 app.use(express.static('public'));
-app.use('/blog',blog);
+app.use('/blog',blog); 
 //http://localhost:3000/naman.txt accessible
 const port=3000;
 app.get('/',(req,res)=>{
@@ -19,9 +22,6 @@ app.get('/about',(req,res)=>{
 app.get('/index',(req,res)=>{
     res.sendFile('templates/index.html',{root:__dirname});
 });
-app.get('/contact',(req,res)=>{
-    res.send("Contact page")
-})
 app.get('/blog',(req,res)=>{
     res.send("Blog page")
 })
