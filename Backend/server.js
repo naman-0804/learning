@@ -20,6 +20,7 @@ app.get('/blog/:slug',(req,res)=>{
     res.send(`hello ${req.params.slug} blog page`)
     console.log(req.params)
     console.log(req.query)
+    //http://localhost:3000/blog/introdfh?mode=dark&region=in
 })
 app.listen(port,()=>{
     console.log(`Server is running on http://localhost:${port}`)
