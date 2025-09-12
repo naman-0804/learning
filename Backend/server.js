@@ -3,17 +3,26 @@ const app=express();
 app.use(express.static('public'));
 //http://localhost:3000/naman.txt accessible
 const port=3000;
-app.get('/',(req,res)=>{
-    res.send("Hello world")
+// app.get('/',(req,res)=>{
+//     res.send("Hello world")
+// })
+app.post('/',(req,res)=>{
+    res.send("Hello world post request")
 })
 app.get('/about',(req,res)=>{
     res.send("About page")
 })
+app.get('/index',(req,res)=>{
+    res.sendFile('templates/index.html',{root:__dirname});
+});
 app.get('/contact',(req,res)=>{
     res.send("Contact page")
 })
 app.get('/blog',(req,res)=>{
     res.send("Blog page")
+})
+app.get('/api',(req,res)=>{
+    res.json({name:"naman",age:22,city:"delhi"})
 })
 // app.get('/blog/intro-to-js',(req,res)=>{
 //     res.send("Into to js page")
