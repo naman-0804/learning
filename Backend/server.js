@@ -13,6 +13,14 @@ app.get('/contact',(req,res)=>{
 app.get('/blog',(req,res)=>{
     res.send("Blog page")
 })
+// app.get('/blog/intro-to-js',(req,res)=>{
+//     res.send("Into to js page")
+// })
+app.get('/blog/:slug',(req,res)=>{
+    res.send(`hello ${req.params.slug} blog page`)
+    console.log(req.params)
+    console.log(req.query)
+})
 app.listen(port,()=>{
     console.log(`Server is running on http://localhost:${port}`)
 })
