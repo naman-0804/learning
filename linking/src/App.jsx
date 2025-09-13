@@ -9,8 +9,8 @@ const Form=()=>{
       body:JSON.stringify({username,password}),
       headers:{"content-type":"application/json"}
     });
-    let res= await r.text()
-    console.log(data,res)
+    let res= await r.text() //data recieved back from server
+    console.log(res)//prints witht ehtdata sent
   }
   return(
     <div>
