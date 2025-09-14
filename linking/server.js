@@ -30,6 +30,10 @@ app.post('/',async (req,res)=>{
     //console.log(req.body);
     res.send("Data received and saved");
 })
+app.get('/users',async(req,res)=>{
+    const users=await User.find({});
+    res.json(users);
+})
 app.listen(port,()=>{
     console.log(`Listen on port:${port}`)
 })
