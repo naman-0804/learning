@@ -22,6 +22,8 @@ const Form=()=>{
       console.log(res)
     }
     fetchUser();
+    const interval = setInterval(fetchUser, 5000);
+    return () => clearInterval(interval);
   },[]);
   return(
     <div>
