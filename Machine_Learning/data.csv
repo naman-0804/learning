@@ -1,0 +1,13 @@
+Name,Gender,City,Passed
+Alice,Female,Chicago,Yes
+Bob,Male,Chicago,No
+Charlie,Male,Chicago,Yes
+David,Male,Houston,No
+Eve,Female,Houston,Yes
+Frank,Male,Houston,No
+Grace,Female,Houston,Yes
+Hannah,Female,Dallas,No
+Ian,Male,Dallas,Yes
+Julia,Female,Austin,No
+Kevin,Male,Austin,Yes
+Laura,Female,Austin,No
