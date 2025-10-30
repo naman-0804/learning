@@ -1,0 +1,32 @@
+<!doctype html>
+<head>
+    Self Made
+<br>
+<style>
+    button{
+        background-color: antiquewhite;
+        width: 40px;
+        height:40px;
+    }
+    button:hover{
+        background-color: aliceblue;
+    }
+    #name{
+        background-color: aqua;
+    }
+</style>
+</head>
+<script>
+    function display(){
+        var a=document.getElementById("name").value
+        console.log(a)
+        document.getElementById("out").value="Hello Mr/Mrs "+a 
+    }
+</script>
+
+<body>
+    <input id="name" placeholder="Enter your name"/>
+    <button id="btn" onclick="display()">Click me</button>
+    <br>
+    <input id="out" placeholder="Your output"/>
+</body>
