@@ -25,10 +25,37 @@
         console.log(a)
         document.getElementById("out").value="Hello Mr/Mrs "+a 
     }
-    const imgdisp = ()=>{
-        const  img=document.getElementById("photo")
-        img.src="https://i0.wp.com/picjumbo.com/wp-content/uploads/beautiful-fall-nature-scenery-free-image.jpeg?w=600&quality=80"
-        img.style.display="block"
+        const imgdisp = () => {
+            return new Promise((resolve, reject) => {
+                const img = document.getElementById("photo");
+                img.style.display = "none"; // hide until loaded
+
+                img.src = "https://i0.wp.com/picjumbo.com/wp-content/uploads/beautiful-fall-nature-scenery-free-image.jpeg?w=600&quality=80";
+
+                img.onload = () => {
+                    setTimeout(() => { // 👈 delay for realism
+                        img.style.display = "block";
+                        resolve("✅ Image loaded successfully!");
+                    }, 1500); // 1.5 sec delay
+                };
+
+                img.onerror = () => {
+                    setTimeout(() => {
+                        reject("❌ Image failed to load!");
+                    }, 1500);
+                };
+            });
+        };
+    async function loadImage() {
+        const status=document.getElementById("status")
+        status.textContent="Loading image..."
+        try{
+            const message=await imgdisp();
+            status.textContent=message
+        }
+        catch(error){
+            status.textContent=error
+        }
     }
 </script>
 
@@ -37,6 +64,7 @@
     <button id="btn" onclick="display()">Click me</button>
     <br>
     <input id="out" placeholder="Your output"/>
-    <button id="img" onclick="imgdisp()">Click for photo</button>
+    <button id="img" onclick="loadImage()">Click for photo</button>
+     <p id="status"></p>
     <img id="photo" alt="new image"/>
 </body>
