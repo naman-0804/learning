@@ -5,8 +5,11 @@
 <style>
     button{
         background-color: antiquewhite;
-        width: 40px;
-        height:40px;
+        width: 80px;
+        height:80px;
+        padding: 25px;
+        border-radius: 10px;
+        margin: 10px;
     }
     button:hover{
         background-color: aliceblue;
@@ -22,6 +25,11 @@
         console.log(a)
         document.getElementById("out").value="Hello Mr/Mrs "+a 
     }
+    const imgdisp = ()=>{
+        const  img=document.getElementById("photo")
+        img.src="https://i0.wp.com/picjumbo.com/wp-content/uploads/beautiful-fall-nature-scenery-free-image.jpeg?w=600&quality=80"
+        img.style.display="block"
+    }
 </script>
 
 <body>
@@ -29,4 +37,6 @@
     <button id="btn" onclick="display()">Click me</button>
     <br>
     <input id="out" placeholder="Your output"/>
+    <button id="img" onclick="imgdisp()">Click for photo</button>
+    <img id="photo" alt="new image"/>
 </body>
