@@ -1,0 +1,26 @@
+<!doctype HTML>
+<html>
+<head>
+    <title>Fetching</title>
+    <style>
+
+    </style>
+    <script>
+        function prediction(){
+            var a=document.getElementById("name").value
+            fetch("https://api.genderize.io/?name="+a)
+            .then(response => response.json())
+            .then(data=>{
+                console.log(data),
+                document.getElementById("predict").value=data.gender
+           })
+            .catch(error => console.error("Error:", error)); 
+        }
+    </script>
+</head>
+<body>  
+    <input id="name" placeholder="Enter the name"/>
+    <input id="predict" placeholder="Predicted gender will appear here"/>
+    <button id="btn" onclick="prediction()">Predict!</button>
+</body>
+</html>
