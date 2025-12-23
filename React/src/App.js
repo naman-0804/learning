@@ -18,7 +18,7 @@
     return(
       <div>
         <input value={cnt} onChange={handlechng}></input>
-        <button id="btn" onClick={count}>Increment</button>
+        <button id="btn"onClick={count}>Increment</button>
       </div>
     )
   }
