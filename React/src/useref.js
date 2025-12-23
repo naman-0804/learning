@@ -1,21 +1,23 @@
 import { useRef } from "react";
 
-function RefCounter() {
-  const refCount = useRef(0);
+function RefDemo() {
+  console.log("🔄 Component rendered");
 
-  const handleClick = () => {
-    refCount.current += 1;
-    console.log("Ref count:", refCount.current);
-  };
+  const clicks = useRef(0);
 
   return (
     <div>
-      <h3>useRef Example</h3>
-      <button onClick={handleClick}>
-        Click (check console)
-      </button>
+    <h1>UserRef example</h1>
+    <button
+      onClick={() => {
+        clicks.current++;
+        console.log("Clicks:", clicks.current);
+      }}
+    >
+      Click me
+    </button>
     </div>
   );
 }
 
-export default RefCounter;
+export default RefDemo;
