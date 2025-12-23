@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<head>
+    <Style>
+        #n {
+            background-color: aqua;
+        }
+
+        .ans {
+            background-color: aquamarine;
+            border-radius: 1rem;
+            display: inline-block;
+            padding: 10px;
+            border: 1rem solid burlywood;
+        }
+    </Style>
+    
+    <title>
+        Testing
+    </title>
+    
+</head>
+
+<body>
+    <input id="n" placeholder="Enter ur name"></input>
+    <input id="val" placeholder="Enter a val"></input>
+    <input id="val2" placeholder="Enter another val"></input>
+    <button onclick="clickrecorded()">Click me</button>
+    <button id="subtract" >Subtract</button>
+    <div class=ans>
+        <input id="out" placeholder="Out sum val here"></input>
+        <input id="hiout" placeholder="Greet"></input>
+        <input id="sub" placeholder="SUbstraction output"></input>
+        <p id="para"></p>
+    </div>
+<script>
+        function clickrecorded() {
+            var a = Number(document.getElementById("val").value)
+            var b = Number(document.getElementById("val2").value)
+            var c = document.getElementById("n").value
+            var outans = a + b;
+            document.getElementById("out").value = outans
+            document.getElementById("hiout").value = "Hello ur sum is " + outans
+            document.getElementById("para").innerText = "Hello ur sum is " + outans
+        }
+        document.getElementById("subtract").onclick=function(){
+            var a = Number(document.getElementById("val").value)
+            var b = Number(document.getElementById("val2").value)
+            document.getElementById("sub").value=a-b
+        }
+    </script>
+</body>
+<!---The innertext is only used with paragraphs not with inout boxed as they dont req innertext-->
+<!--<agr ek specifice box me color toh #id in css    . selects class-->
+<!--Inline block shows in line if only blovk then goes below-->
+<!--
+    Margin → space outside card
+    Padding → space inside card
+    Border → visible line around card
+    Interview one-liner (perfect answer)
+    Margin controls spacing outside the element,
+    Padding controls spacing inside the element,
+    Border is the visible boundary around the element.
+-->
+    <!--Keep the script tag below in ques like where we do id subtract.onclick it 
+    initializes to null as btn is not defined yet -->
