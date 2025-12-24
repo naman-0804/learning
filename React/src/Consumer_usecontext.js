@@ -2,11 +2,11 @@ import { useContext } from "react";
 import { NameContext } from "./Proivder_usecontext";
 
 function ChildC() {
-  const { firstName, lastName } = useContext(NameContext);
+  const name = useContext(NameContext);
 
   return (
     <h2>
-      Child Component: {firstName} {lastName}
+      Child Component: Name is {name} that is passed using context 
     </h2>
   );
 }
