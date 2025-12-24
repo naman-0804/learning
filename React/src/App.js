@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Counter from "./usestate";
 import ApiFetcher from "./useffect";
 import RefCounter from "./useref";
@@ -15,6 +15,7 @@ function App() {
           <Route path="/useeffect" element={<ApiFetcher cnt={cnt} />} />
           <Route path="/useref" element={<RefCounter />} />
           <Route path="/usecontext" element={<ChildC />} />
+          <Route path="*" element={<h2>Welcome to React Hooks Examples. Please select a hook from below.</h2>} />
         </Routes>
       </BrowserRouter>
       <nav>
