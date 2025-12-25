@@ -31,6 +31,17 @@ app.delete("/delete",async(req,res)=>{
     const data=await response.json();
     res.json(data)
 })
+app.put("/update",async(req,res)=>{
+    const response=await fetch("https://dummyjson.com/posts/1",
+        {
+            method: "PUT",
+            headers:{"Content-Type":"application/JSON"},
+            body:JSON.stringify({title:"Hi my name is naman srivastava",})
+        }
+    )
+    const data=await response.json();
+    res.json(data)
+})
 app.listen(port, () => {
     console.log(`Listening on port ${3000}`);
 })
