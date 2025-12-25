@@ -24,7 +24,26 @@ def postData():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-@app.route("/deletedata",methods=['DELETE'])
+@app.route("/deletedata",methods=['DELETE'] )
 def deleteData():
+    try:
+        print("DELETE /deletedata HIT")
+        response=requests.delete("https://dummyjson.com/posts/1")
+        data = response.json()
+        return jsonify(data)
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+    
+@app.route("/updatedata",methods=['PUT'] )
+def updateData():
+    try:
+        print("PUT /updatedata HIT")
+        payLoad={"title":"updated title"}
+        response=requests.put("https://dummyjson.com/posts/1",json=payLoad)
+        data = response.json()
+        return jsonify(data)
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
 if __name__=='__main__':
     app.run(debug=True)
