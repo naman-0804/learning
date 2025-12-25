@@ -5,6 +5,7 @@ import RefCounter from "./useref";
 import { useState } from "react";
 import ChildC from "./Proivder_usecontext";
 import GetData from "./axios";  
+import Promises from "./promises";  
 function App() {
   const [cnt, setCnt] = useState(1);
 
@@ -17,6 +18,7 @@ function App() {
           <Route path="/useref" element={<RefCounter />} />
           <Route path="/usecontext" element={<ChildC />} />
           <Route path="/axios" element={<GetData />} />
+          <Route path="/promises" element={<Promises/>}/>
           <Route path="*" element={<h2>Welcome to React Hooks Examples. Please select a hook from below.</h2>} />
         </Routes>
       </BrowserRouter>
@@ -26,6 +28,7 @@ function App() {
         <a href="/useref">useRef</a> |{" "}
         <a href="/usecontext">useContext</a>
         <a href="/axios"> | Axios Example</a>
+        <a href="/promises"> | Promises example</a>
       </nav>
     </div>
   );
