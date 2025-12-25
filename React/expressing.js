@@ -9,8 +9,7 @@ app.get("/", async (req, res) => {
             query:req.query,
             apiData: data
         })
-        console.log(req.query)
-        res.send("User ID received");
+        console.log("User ID received");
        
     } catch (error) {
         res.status(500).send("ISR")
