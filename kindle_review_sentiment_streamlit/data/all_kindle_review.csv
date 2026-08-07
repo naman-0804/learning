@@ -1,5 +1,3 @@
-The file data/all_kindle_review.csv is intended to contain the dataset of Kindle reviews used for sentiment analysis. Since I don't have the actual dataset, I will create a placeholder CSV structure that you can later fill with the actual data.
-
 id,rating,reviewText
 1,5,"This Kindle is amazing! I love the battery life."
 2,4,"Great product, but the screen could be better."
