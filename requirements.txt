@@ -8,3 +8,4 @@ pillow
 jupyterlab
 ipykernel
 streamlit
+gdown

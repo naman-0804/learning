@@ -1,30 +1,32 @@
+import os
+import gdown
 import streamlit as st
 import tensorflow as tf
 import numpy as np
 from PIL import Image
-import os
+
+st.set_page_config(page_title="Vehicle Image Classifier")
 
 st.title("Vehicle Image Classifier")
 st.write("Upload an image of a vehicle to classify it.")
 
-model_path = "vehicle_classifier.keras"
+# ----------------------------
+# Download model from Google Drive if not present
+# ----------------------------
+MODEL_PATH = "vehicle_classifier.keras"
+FILE_ID = "1DMCwcFRl2H1JV1xsloRSJChouuHdgLib"
 
-# Debug information
-st.write("Current working directory:", os.getcwd())
-st.write("Files in current directory:", os.listdir("."))
+if not os.path.exists(MODEL_PATH):
+    with st.spinner("Downloading model... Please wait (first run only)."):
+        url = f"https://drive.google.com/uc?id={FILE_ID}"
+        gdown.download(url, MODEL_PATH, quiet=False)
 
-if os.path.exists(model_path):
-    st.success(f"Found {model_path}")
-    st.write("Model size:", os.path.getsize(model_path), "bytes")
-else:
-    st.error(f"{model_path} NOT FOUND")
-    st.stop()
-
-
+# ----------------------------
+# Load model
+# ----------------------------
 @st.cache_resource
 def load_model():
-    return tf.keras.models.load_model(model_path)
-
+    return tf.keras.models.load_model(MODEL_PATH)
 
 try:
     model = load_model()
@@ -39,33 +41,36 @@ try:
         "minibus",
         "racing car",
         "taxi",
-        "truck",
+        "truck"
     ]
 
     uploaded_file = st.file_uploader(
         "Choose an image...",
-        type=["jpg", "jpeg", "png"],
+        type=["jpg", "jpeg", "png"]
     )
 
     if uploaded_file is not None:
         image = Image.open(uploaded_file).convert("RGB")
-        st.image(image, caption="Uploaded Image", use_container_width=True)
+
+        st.image(
+            image,
+            caption="Uploaded Image",
+            use_container_width=True
+        )
 
         img = image.resize((224, 224))
         img_array = tf.keras.preprocessing.image.img_to_array(img)
         img_array = tf.expand_dims(img_array, 0)
 
-        predictions = model.predict(img_array)
+        with st.spinner("Classifying..."):
+            predictions = model.predict(img_array, verbose=0)
+
         score = predictions[0]
 
         st.success(
-            f"Prediction: {class_names[np.argmax(score)]} "
-            f"({100*np.max(score):.2f}% confidence)"
+            f"Prediction: **{class_names[np.argmax(score)]}** "
+            f"({100 * np.max(score):.2f}% confidence)"
         )
 
 except Exception as e:
-    import traceback
-
-    st.error(type(e).__name__)
-    st.code(str(e))
-    st.code(traceback.format_exc())
+    st.error(f"Error: {e}")
