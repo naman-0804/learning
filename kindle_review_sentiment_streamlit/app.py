@@ -8,7 +8,13 @@ nltk.download('punkt')
 nltk.download('wordnet')
 
 from src.preprocessing import clean_review, lemmatize_words
-from src.model import predict_sentiment_bow, predict_sentiment_tfidf, predict_sentiment_w2v
+from src.model import SentimentModel
+
+@st.cache_resource
+def load_model():
+    return SentimentModel("data/all_kindle_review.csv")
+
+model = load_model()
 
 st.title("Kindle Review Sentiment Analysis")
 
@@ -19,9 +25,12 @@ review_2 = st.text_area("Review 2")
 
 if st.button("Analyze Sentiment"):
     if review_1:
-        bow_label_1 = "positive" if predict_sentiment_bow(review_1) == 1 else "negative"
-        tfidf_label_1 = "positive" if predict_sentiment_tfidf(review_1) == 1 else "negative"
-        w2v_label_1 = "positive" if predict_sentiment_w2v(review_1) == 1 else "negative"
+        # We clean the review first based on your preprocessing logic
+        cleaned_1 = lemmatize_words(clean_review(review_1))
+        
+        bow_label_1 = "positive" if model.predict_bow(cleaned_1) == 1 else "negative"
+        tfidf_label_1 = "positive" if model.predict_tfidf(cleaned_1) == 1 else "negative"
+        w2v_label_1 = "positive" if model.predict_w2v(cleaned_1) == 1 else "negative"
         
         st.write(f"\n**Review 1:** {review_1}")
         st.write(f"  **BOW:** {bow_label_1}")
@@ -29,9 +38,11 @@ if st.button("Analyze Sentiment"):
         st.write(f"  **Word2Vec:** {w2v_label_1}")
 
     if review_2:
-        bow_label_2 = "positive" if predict_sentiment_bow(review_2) == 1 else "negative"
-        tfidf_label_2 = "positive" if predict_sentiment_tfidf(review_2) == 1 else "negative"
-        w2v_label_2 = "positive" if predict_sentiment_w2v(review_2) == 1 else "negative"
+        cleaned_2 = lemmatize_words(clean_review(review_2))
+        
+        bow_label_2 = "positive" if model.predict_bow(cleaned_2) == 1 else "negative"
+        tfidf_label_2 = "positive" if model.predict_tfidf(cleaned_2) == 1 else "negative"
+        w2v_label_2 = "positive" if model.predict_w2v(cleaned_2) == 1 else "negative"
         
         st.write(f"\n**Review 2:** {review_2}")
         st.write(f"  **BOW:** {bow_label_2}")
