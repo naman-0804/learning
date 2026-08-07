@@ -32,13 +32,7 @@ if not os.path.exists(MODEL_PATH):
 # ----------------------------
 # Debug Information
 # ----------------------------
-st.write("Current Directory:", os.getcwd())
-st.write("Files:", os.listdir("."))
-
-if os.path.exists(MODEL_PATH):
-    st.success("Model file found")
-    st.write("Model Size:", os.path.getsize(MODEL_PATH), "bytes")
-else:
+if not os.path.exists(MODEL_PATH):
     st.error("Model download failed.")
     st.stop()
 
