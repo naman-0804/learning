@@ -1,0 +1,72 @@
+[33m6a61323[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m pattern printing
+[33m7935c43[m Merge branch 'master' of https://github.com/naman-0804/learning
+[33m38af5ac[m session clerk
+[33mc5f6932[m removed commentsz
+[33m0fae515[m nbasic api
+[33m4d779ff[m async await
+[33md0344b6[m loadfing image
+[33m5cfd6fa[m basic js html css
+[33m6a5438d[m Principal comp analysis
+[33mac71835[m what
+[33m71980a4[m Unsupervised
+[33mee03480[m regression metrics
+[33me51126b[m confusion matrix
+[33m5a077a6[m scores in metrics
+[33m5684fce[m decison tree
+[33m15720c6[m decision tree begin
+[33m9544e5c[m knearestneghbour KNN
+[33m285f709[m Logistic regression
+[33m6fea7b5[m multi feature linear regression
+[33mc0ac83a[m Linear regresion
+[33mfbaba78[m test train split
+[33m732fac6[m encpding
+[33mb928df4[m data processing
+[33m24361dc[m running backend and frotend on docker
+[33mdb4f0da[m interval
+[33me983b06[m fetching from mongodb
+[33m1e4b866[m connected mongodb
+[33m2cc64c3[m less goo
+[33mafd4013[m linkend frontend to backend vite
+[33m79d147a[m cahnged location
+[33m1a6a2e0[m middleware
+[33mcf5a3cd[m router
+[33m91860e0[m render site
+[33m7f9c979[m static file serving
+[33m92fb243[m with url
+[33m531e497[m param and query
+[33mbe9e504[m basic express
+[33m409cea8[m added sql
+[33m1a63084[m addding more paths
+[33m50fe11a[m instaslled express
+[33me0fe837[m append file
+[33m151be9c[m FS mdouke readiule write fike / call back hell
+[33m60e75ec[m basic server
+[33m700e89d[m demomnstrraiton
+[33m5db0751[m Lazy Loading
+[33m2c76913[m update
+[33m6233fa8[m POST AXIOS
+[33m3fd8a55[m axios basics
+[33md8907d5[m use Location and use param
+[33m5ccf042[m useNavigate
+[33m49f9c6d[m nested routing
+[33mfc553c7[m navlink
+[33m9f0d11e[m link comp
+[33m4a73d8f[m better
+[33mfcba44f[m browserrouter
+[33mf77caa3[m use Callback
+[33m2b70338[m useMemo
+[33m2292c06[m useref
+[33mae4ebd2[m contextapi direct prop
+[33m1061f94[m props
+[33m9c18548[m use ref
+[33m53de4b6[m useref
+[33m983e2ab[m useffect
+[33m49039ee[m css
+[33mef6c7b9[m css
+[33md5f5489[m made inc dec counter using usestate
+[33mc7cc26d[m contolled comp
+[33md8b926a[m events
+[33md42e127[m digital clock
+[33m303598d[m readme
+[33m9dd5851[m learning
+[33m50e036c[m Initialize project using Create React App

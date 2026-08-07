@@ -1,8 +1,0 @@
-jupyter
-numpy
-pandas
-matplotlib
-scikit-learn
-tensorflow
-nltk
-tqdm 

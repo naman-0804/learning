@@ -1,9 +1,0 @@
-streamlit
-pandas
-nltk
-gensim>=4.4.0
-scikit-learn
-seaborn
-matplotlib
-numpy>=2.0.0
-scipy

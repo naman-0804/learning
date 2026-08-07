@@ -1,0 +1,33 @@
+# Filename: compose.yaml
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    ports:
+      - "3000:3000"
+    volumes:
+      # Mounts your local server.js into the container
+      # This allows the server to restart on changes if you use nodemon
+      - ./server.js:/app/server.js
+      - ./package.json:/app/package.json
+    environment:
+      - NODE_ENV=development
+
+  frontend:
+    build:
+      context: .
+      dockerfile: src/Dockerfile.frontend
+    ports:
+      - "5173:5173"
+    volumes:
+      # Mounts your local src folder into the container
+      # This is what enables hot-reloading for Vite
+      - ./src:/app/src
+      - ./public:/app/public
+      - ./vite.config.js:/app/vite.config.js
+      - ./package.json:/app/package.json
+    depends_on:
+      - backend
