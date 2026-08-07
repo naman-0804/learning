@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import nltk
+import os
 
 # Download NLTK resources BEFORE importing modules that use them
 nltk.download('stopwords')
@@ -12,7 +13,9 @@ from src.model import SentimentModel
 
 @st.cache_resource
 def load_model():
-    return SentimentModel("data/all_kindle_review.csv")
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    data_path = os.path.join(base_dir, "data", "all_kindle_review.csv")
+    return SentimentModel(data_path)
 
 model = load_model()
 
