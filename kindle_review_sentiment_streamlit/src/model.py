@@ -1,41 +1,18 @@
-from sklearn.naive_bayes import MultinomialNB, GaussianNB
 import numpy as np
-import pandas as pd
-from gensim.models import Word2Vec
-from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
+import os
+import joblib
 
 class SentimentModel:
-    def __init__(self, data_path):
-        self.data = pd.read_csv(data_path, encoding='utf-8')
-        self.bow_vectorizer = CountVectorizer()
-        self.tfidf_vectorizer = TfidfVectorizer()
-        self.w2v_model = None
-        self.w2v_classifier = None
-        self.bow_model = None
-        self.tfidf_model = None
-        self._prepare_data()
-
-    def _prepare_data(self):
-        self.data['rating'] = self.data['rating'].apply(lambda x: 0 if x < 3 else 1)
-        self.data['reviewText'] = self.data['reviewText'].str.lower()
-        self.data['reviewText'] = self.data['reviewText'].str.replace(r'http\S+|www\.\S+|ftp\S+', " ", regex=True)
-        self.data['reviewText'] = self.data['reviewText'].str.replace(r'[^a-z\s]', " ", regex=True)
-        self.data['reviewText'] = self.data['reviewText'].str.replace(r'\s+', " ", regex=True).str.strip()
-
-        self.X = self.data['reviewText']
-        self.y = self.data['rating']
-
-        self.bow_vectorizer.fit(self.X)
-        self.tfidf_vectorizer.fit(self.X)
-
-        sentences = [text.split() for text in self.X]
-        self.w2v_model = Word2Vec(sentences, vector_size=100, window=5, min_count=2, workers=4, epochs=45, seed=42)
+    def __init__(self, data_dir):
+        # Load all pre-trained models from the data directory
+        self.bow_vectorizer = joblib.load(os.path.join(data_dir, 'bow_vectorizer.pkl'))
+        self.bow_model = joblib.load(os.path.join(data_dir, 'bow_model.pkl'))
         
-        X_w2v = np.array([self.document_vector(t) for t in self.X])
-        self.w2v_classifier = GaussianNB().fit(X_w2v, self.y)
-
-        self.bow_model = MultinomialNB().fit(self.bow_vectorizer.transform(self.X).toarray(), self.y)
-        self.tfidf_model = MultinomialNB().fit(self.tfidf_vectorizer.transform(self.X).toarray(), self.y)
+        self.tfidf_vectorizer = joblib.load(os.path.join(data_dir, 'tfidf_vectorizer.pkl'))
+        self.tfidf_model = joblib.load(os.path.join(data_dir, 'tfidf_model.pkl'))
+        
+        self.w2v_model = joblib.load(os.path.join(data_dir, 'w2v_model.pkl'))
+        self.w2v_classifier = joblib.load(os.path.join(data_dir, 'w2v_classifier.pkl'))
 
     def predict_bow(self, text):
         vec = self.bow_vectorizer.transform([text]).toarray()

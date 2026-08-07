@@ -14,8 +14,8 @@ from src.model import SentimentModel
 @st.cache_resource
 def load_model():
     base_dir = os.path.dirname(os.path.abspath(__file__))
-    data_path = os.path.join(base_dir, "data", "all_kindle_review.csv")
-    return SentimentModel(data_path)
+    data_dir = os.path.join(base_dir, "data")
+    return SentimentModel(data_dir)
 
 model = load_model()
 
