@@ -10,6 +10,7 @@ class SentimentModel:
         self.bow_vectorizer = CountVectorizer()
         self.tfidf_vectorizer = TfidfVectorizer()
         self.w2v_model = None
+        self.w2v_classifier = None
         self.bow_model = None
         self.tfidf_model = None
         self._prepare_data()
@@ -29,6 +30,9 @@ class SentimentModel:
 
         sentences = [text.split() for text in self.X]
         self.w2v_model = Word2Vec(sentences, vector_size=100, window=5, min_count=2, workers=4, epochs=45, seed=42)
+        
+        X_w2v = np.array([self.document_vector(t) for t in self.X])
+        self.w2v_classifier = GaussianNB().fit(X_w2v, self.y)
 
         self.bow_model = MultinomialNB().fit(self.bow_vectorizer.transform(self.X).toarray(), self.y)
         self.tfidf_model = MultinomialNB().fit(self.tfidf_vectorizer.transform(self.X).toarray(), self.y)
@@ -49,4 +53,4 @@ class SentimentModel:
 
     def predict_w2v(self, text):
         vec = self.document_vector(text).reshape(1, -1)
-        return GaussianNB().fit(self.document_vector(self.X).reshape(-1, self.w2v_model.vector_size), self.y).predict(vec)[0]
+        return self.w2v_classifier.predict(vec)[0]
