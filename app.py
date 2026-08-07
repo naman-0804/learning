@@ -10,23 +10,36 @@ st.set_page_config(page_title="Vehicle Image Classifier")
 st.title("Vehicle Image Classifier")
 st.write("Upload an image of a vehicle to classify it.")
 
-# ----------------------------
-# Download model from Google Drive if not present
-# ----------------------------
 MODEL_PATH = "vehicle_classifier.keras"
 FILE_ID = "1DMCwcFRl2H1JV1xsloRSJChouuHdgLib"
+URL = f"https://drive.google.com/uc?id={FILE_ID}"
 
+# Delete invalid/cached model
+if os.path.exists(MODEL_PATH):
+    if os.path.getsize(MODEL_PATH) < 1000000:  # Less than 1 MB = bad download
+        os.remove(MODEL_PATH)
+
+# Download if missing
 if not os.path.exists(MODEL_PATH):
-    with st.spinner("Downloading model... Please wait (first run only)."):
-        url = f"https://drive.google.com/uc?id={FILE_ID}"
-        gdown.download(url, MODEL_PATH, quiet=False)
+    with st.spinner("Downloading model... (first run only)"):
+        gdown.download(URL, MODEL_PATH, quiet=False, fuzzy=True)
 
-# ----------------------------
-# Load model
-# ----------------------------
+# Debug information
+st.write("Current directory:", os.getcwd())
+st.write("Files:", os.listdir("."))
+
+if os.path.exists(MODEL_PATH):
+    st.success("Model found")
+    st.write("Model size:", os.path.getsize(MODEL_PATH), "bytes")
+else:
+    st.error("Model download failed.")
+    st.stop()
+
+
 @st.cache_resource
 def load_model():
     return tf.keras.models.load_model(MODEL_PATH)
+
 
 try:
     model = load_model()
@@ -41,12 +54,12 @@ try:
         "minibus",
         "racing car",
         "taxi",
-        "truck"
+        "truck",
     ]
 
     uploaded_file = st.file_uploader(
-        "Choose an image...",
-        type=["jpg", "jpeg", "png"]
+        "Choose an image",
+        type=["jpg", "jpeg", "png"],
     )
 
     if uploaded_file is not None:
@@ -55,7 +68,7 @@ try:
         st.image(
             image,
             caption="Uploaded Image",
-            use_container_width=True
+            use_container_width=True,
         )
 
         img = image.resize((224, 224))
@@ -68,9 +81,13 @@ try:
         score = predictions[0]
 
         st.success(
-            f"Prediction: **{class_names[np.argmax(score)]}** "
-            f"({100 * np.max(score):.2f}% confidence)"
+            f"Prediction: {class_names[np.argmax(score)]}\n\n"
+            f"Confidence: {100 * np.max(score):.2f}%"
         )
 
 except Exception as e:
-    st.error(f"Error: {e}")
+    import traceback
+
+    st.error(type(e).__name__)
+    st.code(str(e))
+    st.code(traceback.format_exc())
