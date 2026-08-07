@@ -1,14 +1,14 @@
 import streamlit as st
 import pandas as pd
-from src.preprocessing import clean_review, lemmatize_words
-from src.model import predict_sentiment_bow, predict_sentiment_tfidf, predict_sentiment_w2v
 import nltk
-# Download NLTK resources (it will only download if it hasn't already)
-nltk.download('stopwords')
 
-# Depending on your code, you might also need these:
+# Download NLTK resources BEFORE importing modules that use them
+nltk.download('stopwords')
 nltk.download('punkt')
 nltk.download('wordnet')
+
+from src.preprocessing import clean_review, lemmatize_words
+from src.model import predict_sentiment_bow, predict_sentiment_tfidf, predict_sentiment_w2v
 
 st.title("Kindle Review Sentiment Analysis")
 
