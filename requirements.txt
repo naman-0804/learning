@@ -1,3 +1,5 @@
 jupyterlab
 ipykernel
 streamlit
+numpy
+tensorflow-cpu
