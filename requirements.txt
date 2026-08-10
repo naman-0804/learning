@@ -2,4 +2,4 @@ jupyterlab
 ipykernel
 streamlit
 numpy
-tensorflow-cpu
+tensorflow-cpu==2.11.0

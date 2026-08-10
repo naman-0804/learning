@@ -14,7 +14,7 @@ st.set_page_config(page_title="Next Word Predictor", layout="centered")
 
 @st.cache_resource
 def load_next_word_model():
-    return load_model(MODEL_PATH)
+    return load_model(MODEL_PATH, compile=False)
 
 @st.cache_data
 def build_tokenizer_and_max_len():
