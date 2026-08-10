@@ -1,5 +1,5 @@
 {
-    "name": "text_prediction",
+    "name": "cnn_vehicle",
     "build": {
         "dockerfile": "Dockerfile",
         "context": ".."
