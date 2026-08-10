@@ -6,9 +6,10 @@ from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 from tensorflow.keras.preprocessing.text import Tokenizer
 
-ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-MODEL_PATH = os.path.join(ROOT_DIR, "next_word_model.keras")
-TEXT_PATH = os.path.join(ROOT_DIR, "shakespeare-hamlet.txt")
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+MODEL_PATH = os.path.join(BASE_DIR, "next_word_model.keras")
+TEXT_PATH = os.path.join(BASE_DIR, "shakespeare-hamlet.txt")
 
 st.set_page_config(page_title="Next Word Predictor", layout="centered")
 
