@@ -152,16 +152,6 @@ def main():
         "will predict the next likely word."
     )
 
-    st.image(
-        TRAINING_IMAGE_PATH,
-        caption="Training snapshot: final accuracy is 0.05 due to limited system resources.",
-        use_column_width=True
-    )
-
-    st.write(
-        "**Important:** The model accuracy is only 0.05 because the system was not sufficient to fully train the network."
-    )
-
     user_input = st.text_input(
         "Enter prompt",
         value="to be or not to"
@@ -202,6 +192,16 @@ def main():
 
     st.caption(
         "Run with: `streamlit run streamlit/app.py`"
+    )
+
+    st.image(
+        TRAINING_IMAGE_PATH,
+        caption="Training snapshot: final accuracy is 0.05 due to limited system resources.",
+        use_column_width=True
+    )
+
+    st.write(
+        "**Important:** The model accuracy is only 0.05 because the system was not sufficient to fully train the network."
     )
 
 
