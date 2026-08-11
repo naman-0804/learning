@@ -23,6 +23,11 @@ TEXT_PATH = os.path.join(
     "shakespeare-hamlet.txt"
 )
 
+TRAINING_IMAGE_PATH = os.path.join(
+    BASE_DIR,
+    "training_accuracy.png"
+)
+
 
 # --------------------------------------------------
 # Page configuration
@@ -145,6 +150,16 @@ def main():
     st.write(
         "Type a partial phrase and the model "
         "will predict the next likely word."
+    )
+
+    st.image(
+        TRAINING_IMAGE_PATH,
+        caption="Training snapshot: final accuracy is 0.05 due to limited system resources.",
+        use_column_width=True
+    )
+
+    st.write(
+        "**Important:** The model accuracy is only 0.05 because the system was not sufficient to fully train the network."
     )
 
     user_input = st.text_input(
