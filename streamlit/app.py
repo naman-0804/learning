@@ -185,14 +185,10 @@ def main():
     st.markdown("---")
 
     st.markdown(
-        "This app loads `next_word_model.keras` "
-        "and uses the Shakespeare Hamlet corpus "
+        "This app uses the Shakespeare Hamlet corpus "
         "to build the tokenizer."
     )
 
-    st.caption(
-        "Run with: `streamlit run streamlit/app.py`"
-    )
 
     st.image(
         TRAINING_IMAGE_PATH,
