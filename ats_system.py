@@ -1,17 +1,14 @@
-from dotenv import load_dotenv
-import os
 import streamlit as st
 import google.generativeai as genai
 from PIL import Image
 import fitz  # PyMuPDF
 import io
 
-# Load environment variables
-load_dotenv()
-google_api_key = os.getenv("GOOGLE_API_KEY")
-genai.configure(api_key=google_api_key)
+# Initialize our Streamlit app
+st.set_page_config(page_title="ATS Resume Expert")
 
-def get_gemini_response(input_text, pdf_content, prompt):
+def get_gemini_response(input_text, pdf_content, prompt, api_key):
+    genai.configure(api_key=api_key)
     # You can change this to gemini-1.5-flash or gemini-3.5-flash as per your setup
     model = genai.GenerativeModel('gemini-3.5-flash')
     
@@ -48,10 +45,10 @@ def input_pdf_setup(uploaded_file):
     else:
         raise FileNotFoundError("No file uploaded")
 
-# Initialize our Streamlit app
-st.set_page_config(page_title="ATS Resume Expert")
 st.title("Smart ATS Resume Analyzer")
 st.header("Optimize Your Resume with Gemini")
+
+google_api_key = st.text_input("Enter your Google Gemini API Key", type="password")
 
 input_text = st.text_area("Job Description (Optional): ", key="input", height=200)
 uploaded_file = st.file_uploader("Upload your resume (PDF)", type=["pdf"])
@@ -106,37 +103,46 @@ Highlight their core strengths, primary skills, potential career trajectory, and
 """
 
 # Handle button clicks
+def check_api_key():
+    if not google_api_key:
+        st.error("Please enter your Google Gemini API Key above.")
+        return False
+    return True
+
 if submit1:
-    if uploaded_file is not None:
-        with st.spinner("Analyzing your resume..."):
-            pdf_content = input_pdf_setup(uploaded_file)
-            prompt = input_prompt1 if input_text.strip() else input_prompt_improve_general
-            response = get_gemini_response(input_text, pdf_content, prompt)
-            st.subheader("Recommendations & Improvements")
-            st.write(response)
-    else:
-        st.warning("Please upload the resume.")
-
-elif submit2:
-    if uploaded_file is not None:
-        with st.spinner("Evaluating your profile..."):
-            pdf_content = input_pdf_setup(uploaded_file)
-            prompt = input_prompt2 if input_text.strip() else input_prompt_overview
-            response = get_gemini_response(input_text, pdf_content, prompt)
-            st.subheader("HR Evaluation / Overview")
-            st.write(response)
-    else:
-        st.warning("Please upload the resume.")
-
-elif submit3:
-    if uploaded_file is not None:
-        if input_text.strip():
-            with st.spinner("Calculating match percentage..."):
+    if check_api_key():
+        if uploaded_file is not None:
+            with st.spinner("Analyzing your resume..."):
                 pdf_content = input_pdf_setup(uploaded_file)
-                response = get_gemini_response(input_text, pdf_content, input_prompt3)
-                st.subheader("ATS Match Results")
+                prompt = input_prompt1 if input_text.strip() else input_prompt_improve_general
+                response = get_gemini_response(input_text, pdf_content, prompt, google_api_key)
+                st.subheader("Recommendations & Improvements")
                 st.write(response)
         else:
-            st.warning("Please provide a Job Description to calculate the Percentage Match.")
-    else:
-        st.warning("Please upload the resume.")
+            st.warning("Please upload the resume.")
+
+elif submit2:
+    if check_api_key():
+        if uploaded_file is not None:
+            with st.spinner("Evaluating your profile..."):
+                pdf_content = input_pdf_setup(uploaded_file)
+                prompt = input_prompt2 if input_text.strip() else input_prompt_overview
+                response = get_gemini_response(input_text, pdf_content, prompt, google_api_key)
+                st.subheader("HR Evaluation / Overview")
+                st.write(response)
+        else:
+            st.warning("Please upload the resume.")
+
+elif submit3:
+    if check_api_key():
+        if uploaded_file is not None:
+            if input_text.strip():
+                with st.spinner("Calculating match percentage..."):
+                    pdf_content = input_pdf_setup(uploaded_file)
+                    response = get_gemini_response(input_text, pdf_content, input_prompt3, google_api_key)
+                    st.subheader("ATS Match Results")
+                    st.write(response)
+            else:
+                st.warning("Please provide a Job Description to calculate the Percentage Match.")
+        else:
+            st.warning("Please upload the resume.")

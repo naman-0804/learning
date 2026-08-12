@@ -1,22 +1,22 @@
-from dotenv import load_dotenv
-import os
-
-load_dotenv()
-google_api_key = os.getenv("GOOGLE_API_KEY")
 import streamlit as st
 from google import genai
 
-client = genai.Client(api_key=os.getenv("GOOGLE_API_KEY"))
+# Initialize our Streamlit app
+st.set_page_config(page_title="Q&A Chatbot")
 
-chat = client.chats.create(model="gemini-3.5-flash")
-def get_gemini_response(question):
+def get_gemini_response(question, api_key):
+    if not api_key:
+        return "Please enter your API Key above to chat."
+    
+    client = genai.Client(api_key=api_key)
+    chat = client.chats.create(model="gemini-3.5-flash")
     response = chat.send_message(question)
     return response.text
 
-#initialize out streamlit app
-st.set_page_config(page_title="Q&A Chatbot")
 st.title("Q&A Chatbot")
 st.header("Genai LLM Application")
+
+api_key = st.text_input("Enter your Google Gemini API Key", type="password")
 #initialize the chat history
 
 if "chat_history" not in st.session_state:
@@ -35,7 +35,7 @@ if question := st.chat_input("Ask a question"):
         st.write(question)
     
     # Get Gemini response and display it
-    response = get_gemini_response(question)
+    response = get_gemini_response(question, api_key)
     st.session_state['chat_history'].append(("Gemini", response))
     with st.chat_message("assistant"):
         st.write(response)
