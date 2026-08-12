@@ -1,5 +1,5 @@
 import streamlit as st
-from google import genai
+import google.generativeai as genai
 
 # Initialize our Streamlit app
 st.set_page_config(page_title="Q&A Chatbot")
@@ -8,9 +8,9 @@ def get_gemini_response(question, api_key):
     if not api_key:
         return "Please enter your API Key above to chat."
     
-    client = genai.Client(api_key=api_key)
-    chat = client.chats.create(model="gemini-3.5-flash")
-    response = chat.send_message(question)
+    genai.configure(api_key=api_key)
+    model = genai.GenerativeModel("gemini-3.5-flash")
+    response = model.generate_content(question)
     return response.text
 
 st.title("Q&A Chatbot")
