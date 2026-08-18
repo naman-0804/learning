@@ -15,26 +15,25 @@ st.set_page_config(page_title="Agentic RAG", page_icon="🤖")
 st.title("LangChain & LangGraph Agentic RAG")
 
 # API Key and Model configuration at the top
-col1, col2 = st.columns(2)
+col1, col2, col3 = st.columns(3)
 with col1:
     api_key = st.text_input("Enter Gemini API Key", type="password")
 with col2:
     model_name = st.text_input("Enter Gemini Model Name", value="gemini-1.5-flash")
+with col3:
+    embedding_model = st.text_input("Enter Embedding Model", value="models/gemini-embedding-2")
 
 @st.cache_resource(show_spinner=False)
-def setup_tools(_api_key):
+def setup_tools(_api_key, _embedding_model):
     # Load LangGraph Docs
     lg_urls = [
         "https://docs.langchain.com/oss/python/langgraph/overview",
-        "https://docs.langchain.com/oss/python/langgraph/workflows-agents",
-        "https://docs.langchain.com/oss/python/langgraph/graph-api#map-reduce-and-the-send-api"
     ]
     lg_docs = WebBaseLoader(lg_urls).load()
     
     # Load LangChain Docs
     lc_urls = [
         "https://docs.langchain.com/oss/python/langchain/overview",
-        "https://docs.langchain.com/oss/python/langchain/models"
     ]
     lc_docs = WebBaseLoader(lc_urls).load()
 
@@ -44,7 +43,7 @@ def setup_tools(_api_key):
     lc_splits = text_splitter.split_documents(lc_docs)
 
     # Embeddings & Vectorstores
-    embeddings = GoogleGenerativeAIEmbeddings(model='models/gemini-embedding-2', api_key=_api_key)
+    embeddings = GoogleGenerativeAIEmbeddings(model=_embedding_model, api_key=_api_key)
     lg_vectorstore = FAISS.from_documents(lg_splits, embeddings)
     lc_vectorstore = FAISS.from_documents(lc_splits, embeddings)
 
@@ -83,9 +82,9 @@ def get_graph(_api_key, _model_name, _tools):
     return workflow.compile()
 
 # Main app logic
-if api_key and model_name:
+if api_key and model_name and embedding_model:
     with st.spinner("Setting up knowledge bases... This might take a moment on first run."):
-        tools = setup_tools(api_key)
+        tools = setup_tools(api_key, embedding_model)
         app = get_graph(api_key, model_name, tools)
 
     # Initialize chat history
