@@ -24,7 +24,7 @@ with col3:
     embedding_model = st.text_input("Enter Embedding Model")
 
 @st.cache_resource(show_spinner=False)
-def setup_tools(_api_key, _embedding_model):
+def setup_tools(api_key, embedding_model):
     # Load LangGraph Docs
     lg_urls = [
         "https://docs.langchain.com/oss/python/langgraph/overview",
@@ -43,7 +43,7 @@ def setup_tools(_api_key, _embedding_model):
     lc_splits = text_splitter.split_documents(lc_docs)
 
     # Embeddings & Vectorstores
-    embeddings = GoogleGenerativeAIEmbeddings(model=_embedding_model, api_key=_api_key)
+    embeddings = GoogleGenerativeAIEmbeddings(model=embedding_model, api_key=api_key)
     lg_vectorstore = FAISS.from_documents(lg_splits, embeddings)
     lc_vectorstore = FAISS.from_documents(lc_splits, embeddings)
 
@@ -66,9 +66,9 @@ class State(TypedDict):
     messages: Annotated[list, add_messages]
 
 @st.cache_resource(show_spinner=False)
-def get_graph(_api_key, _model_name, _tools):
+def get_graph(api_key, model_name, _tools):
     def call_model(state: State):
-        llm = ChatGoogleGenerativeAI(model=_model_name, api_key=_api_key).bind_tools(_tools)
+        llm = ChatGoogleGenerativeAI(model=model_name, api_key=api_key).bind_tools(_tools)
         response = llm.invoke(state["messages"])
         return {"messages": [response]}
 
