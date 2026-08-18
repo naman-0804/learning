@@ -109,16 +109,22 @@ if api_key and model_name and embedding_model:
                 inputs = {"messages": [("user", prompt)]}
                 result = app.invoke(inputs)
                 
-                final_response = result["messages"][-1].content
+                final_content = result["messages"][-1].content
+                
+                # Extract string correctly if the model returned a list of dicts
+                if isinstance(final_content, list):
+                    text_parts = [part["text"] for part in final_content if isinstance(part, dict) and "text" in part]
+                    output_text = "".join(text_parts)
+                else:
+                    output_text = str(final_content)
                 
                 # Check message history to see if any tools were used
                 used_tools = []
                 for msg in result["messages"]:
-                    if msg.type == "tool":
-                        used_tools.append(msg.name)
+                    if getattr(msg, "type", "") == "tool":
+                        used_tools.append(getattr(msg, "name", "unknown_tool"))
                 
                 # Determine which databases were searched
-                output_text = final_response
                 if used_tools:
                     unique_tools = list(set(used_tools))
                     db_names = []
