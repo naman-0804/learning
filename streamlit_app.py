@@ -19,10 +19,7 @@ col1, col2 = st.columns(2)
 with col1:
     api_key = st.text_input("Enter Gemini API Key", type="password")
 with col2:
-    model_name = st.selectbox(
-        "Select Gemini Model", 
-        ("gemini-1.5-flash", "gemini-1.5-pro", "gemini-1.0-pro", "gemini-3.6-flash")
-    )
+    model_name = st.text_input("Enter Gemini Model Name", value="gemini-1.5-flash")
 
 @st.cache_resource(show_spinner=False)
 def setup_tools(_api_key):
@@ -86,7 +83,7 @@ def get_graph(_api_key, _model_name, _tools):
     return workflow.compile()
 
 # Main app logic
-if api_key:
+if api_key and model_name:
     with st.spinner("Setting up knowledge bases... This might take a moment on first run."):
         tools = setup_tools(api_key)
         app = get_graph(api_key, model_name, tools)
