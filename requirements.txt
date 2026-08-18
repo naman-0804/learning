@@ -1,5 +1,7 @@
-langgraph>=0.2.54
-langchain-core>=0.3.0
-langchain-google-genai>=2.1.0
-langsmith>=0.1.0
-python-dotenv>=1.0.1
+streamlit
+langchain
+langchain-community
+langchain-google-genai
+langgraph
+faiss-cpu
+beautifulsoup4
