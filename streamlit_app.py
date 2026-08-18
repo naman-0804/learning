@@ -19,9 +19,9 @@ col1, col2, col3 = st.columns(3)
 with col1:
     api_key = st.text_input("Enter Gemini API Key", type="password")
 with col2:
-    model_name = st.text_input("Enter Gemini Model Name", value="gemini-1.5-flash")
+    model_name = st.text_input("Enter Gemini Model Name")
 with col3:
-    embedding_model = st.text_input("Enter Embedding Model", value="models/gemini-embedding-2")
+    embedding_model = st.text_input("Enter Embedding Model")
 
 @st.cache_resource(show_spinner=False)
 def setup_tools(_api_key, _embedding_model):
